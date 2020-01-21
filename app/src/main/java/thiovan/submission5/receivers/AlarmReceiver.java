@@ -11,8 +11,6 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -24,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -32,7 +29,6 @@ import java.util.Locale;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import thiovan.submission5.R;
-import thiovan.submission5.models.Movie;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -59,7 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
-    public void fetchReleaseToday(final Context context, final int notifId) {
+    private void fetchReleaseToday(final Context context, final int notifId) {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         String formattedDate = df.format(c);
@@ -153,7 +149,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void cancelAlarm(Context context, String type) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
-        int requestCode = type.equalsIgnoreCase(TYPE_RELEASE_REMINDER) ? ID_RELEASE_REMINDER : ID_DAILY_REMINDER;;
+        int requestCode = type.equalsIgnoreCase(TYPE_RELEASE_REMINDER) ? ID_RELEASE_REMINDER : ID_DAILY_REMINDER;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
         pendingIntent.cancel();
 
@@ -164,7 +160,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public boolean isAlarmSet(Context context, String type) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        int requestCode = type.equalsIgnoreCase(TYPE_RELEASE_REMINDER) ? ID_RELEASE_REMINDER : ID_DAILY_REMINDER;;
+        int requestCode = type.equalsIgnoreCase(TYPE_RELEASE_REMINDER) ? ID_RELEASE_REMINDER : ID_DAILY_REMINDER;
 
         return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE) != null;
     }

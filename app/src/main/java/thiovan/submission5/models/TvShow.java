@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tv_show_table")
 public class TvShow implements Parcelable {
+
     @PrimaryKey
     @NonNull
     private String id;

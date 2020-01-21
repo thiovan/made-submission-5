@@ -9,7 +9,6 @@ import thiovan.submission5.events.CatalogEvent;
 import thiovan.submission5.events.SearchEvent;
 import thiovan.submission5.fragments.CatalogFragment;
 import thiovan.submission5.fragments.FavoriteFragment;
-import thiovan.submission5.receivers.AlarmReceiver;
 import thiovan.submission5.widgets.FavoriteWidget;
 
 import android.app.SearchManager;
@@ -22,7 +21,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RemoteViews;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -30,9 +28,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-    private static final int JOB_ID = 100;
-    private static final int SCHEDULE_OF_PERIOD = 86000;
 
     private String currentCatalog = "movie";
 

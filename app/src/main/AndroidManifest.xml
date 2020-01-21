@@ -4,6 +4,8 @@
     package="thiovan.submission5">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="thiovan.submission5.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="thiovan.submission5.WRITE_DATABASE" android:protectionLevel="normal" />
 
     <application
         android:name=".App"
@@ -14,10 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <provider
+            android:name=".providers.FavoriteProvider"
+            android:authorities="thiovan.submission5"
+            android:enabled="true"
+            android:exported="true"/>
+
         <receiver
             android:name=".receivers.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity
             android:name=".activities.PreferenceActivity"

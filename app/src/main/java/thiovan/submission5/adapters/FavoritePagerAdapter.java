@@ -2,6 +2,7 @@ package thiovan.submission5.adapters;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
@@ -27,9 +28,11 @@ public class FavoritePagerAdapter extends FragmentPagerAdapter {
             R.string.tab_text_1,
             R.string.tab_text_2
     };
+
+    @NonNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
+        Fragment fragment = new MovieFavoriteFragment();
         switch (position) {
             case 0:
                 fragment = new MovieFavoriteFragment();
@@ -40,11 +43,13 @@ public class FavoritePagerAdapter extends FragmentPagerAdapter {
         }
         return fragment;
     }
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         return mContext.getResources().getString(TAB_TITLES[position]);
     }
+
     @Override
     public int getCount() {
         return 2;

@@ -32,7 +32,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import thiovan.submission5.R;
 import thiovan.submission5.activities.DetailActivity;
 import thiovan.submission5.adapters.TvShowListAdapter;
-import thiovan.submission5.events.CatalogEvent;
 import thiovan.submission5.events.SearchEvent;
 import thiovan.submission5.models.TvShow;
 

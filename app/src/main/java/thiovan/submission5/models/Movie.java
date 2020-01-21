@@ -7,8 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "movie_table")
+@Entity(tableName = Movie.TABLE_NAME)
 public class Movie implements Parcelable {
+    public static final String TABLE_NAME = "movie_table";
+
     @PrimaryKey
     @NonNull
     private String id;

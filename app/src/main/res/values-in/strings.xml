@@ -20,7 +20,7 @@
     <string name="success_add_favorite">Ditambahkan ke favorit saya</string>
     <string name="empty_favorite_list">Daftar favorit kosong</string>
     <string name="search">Cari</string>
-    <string name="search_movie_hint">Cari film...</string>
+    <string name="search_movie_hint">Cari...</string>
     <string name="search_tv_show_hint">Cari serial tv...</string>
     <string name="search_not_found">Pencarian tidak ditemukan</string>
     <string name="appwidget_text">Film Favorit</string>

@@ -38,7 +38,7 @@ public class FavoriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_favorite, container, false);
 
-        ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar().setTitle(R.string.header_favorite);
+        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setTitle(R.string.header_favorite);
 
         FavoritePagerAdapter catalogPagerAdapter = new FavoritePagerAdapter(mContext, getChildFragmentManager());
         ViewPager viewPager = rootView.findViewById(R.id.view_pager);

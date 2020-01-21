@@ -19,7 +19,6 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,10 +32,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import thiovan.submission5.R;
 import thiovan.submission5.activities.DetailActivity;
 import thiovan.submission5.adapters.MovieListAdapter;
-import thiovan.submission5.events.CatalogEvent;
 import thiovan.submission5.events.SearchEvent;
 import thiovan.submission5.models.Movie;
-import thiovan.submission5.models.TvShow;
 
 /**
  * A simple {@link Fragment} subclass.

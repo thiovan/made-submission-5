@@ -1,5 +1,7 @@
 package thiovan.submission5.dao;
 
+import android.database.Cursor;
+
 import java.util.List;
 
 import androidx.room.Dao;
@@ -34,4 +36,7 @@ public interface FavoriteDao {
 
     @Delete
     void deleteTvShow(TvShow movie);
+
+    @Query("SELECT * FROM movie_table")
+    Cursor getMovieListCursor();
 }

@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -26,8 +25,8 @@ public class FavoriteWidget extends AppWidgetProvider {
     private static final String TOAST_ACTION = "thiovan.submission5.TOAST_ACTION";
     public static final String EXTRA_ITEM = "thiovan.submission5.EXTRA_ITEM";
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId) {
 
         Intent intent = new Intent(context, FavoriteWidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
