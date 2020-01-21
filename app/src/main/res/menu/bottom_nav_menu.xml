@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_catalog"
+        android:icon="@drawable/ic_movie_filter_white_24dp"
+        android:title="@string/nav_catalog" />
+
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/ic_favorite_white_24dp"
+        android:title="@string/nav_favorite" />
+</menu>

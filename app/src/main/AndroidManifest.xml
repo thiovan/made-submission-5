@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="thiovan.submission5">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <receiver
+            android:name=".receivers.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity
+            android:name=".activities.PreferenceActivity"
+            android:label="@string/header_setting" />
+
+        <receiver android:name=".widgets.FavoriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_widget_info" />
+        </receiver>
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="thiovan.submission5.activities.MainActivity" />
+
+        <activity
+            android:name=".activities.DetailActivity"
+            android:label="@string/header_detail" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/header_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".widgets.FavoriteWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>
