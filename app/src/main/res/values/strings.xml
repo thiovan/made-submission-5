@@ -34,6 +34,8 @@
     <string name="title_daily_reminder">Daily Reminder</string>
     <string name="summary_daily_reminder">Reminder for return to app</string>
     <string name="header_setting">Reminder Settings</string>
-    <string name="released_today">has been release today!</string>
-    <string name="missing_you">missing you!</string>
+    <string name="released_today"> has been release today!</string>
+    <string name="missing_you"> missing you!</string>
+    <string name="new_movie_today">New movies released today!</string>
+    <string name="movies">movies</string>
 </resources>

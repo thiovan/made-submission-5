@@ -36,4 +36,6 @@
     <string name="header_setting">Pengaturan Pengingat</string>
     <string name="released_today">" telah diluncurkan hari ini!"</string>
     <string name="missing_you">" merindukan mu!"</string>
+    <string name="new_movie_today">Film-film baru diluncurkan hari ini!</string>
+    <string name="movies">film</string>
 </resources>

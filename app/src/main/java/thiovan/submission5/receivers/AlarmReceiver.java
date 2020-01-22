@@ -22,8 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.core.app.NotificationCompat;
@@ -51,11 +53,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (type.equalsIgnoreCase(TYPE_RELEASE_REMINDER)) {
             fetchReleaseToday(context, notifId);
         } else {
-            showAlarmNotification(context, title, message, notifId);
+            showDailyNotification(context, title, message, notifId);
         }
     }
 
-    private void fetchReleaseToday(final Context context, final int notifId) {
+    public void fetchReleaseToday(final Context context, final int notifId) {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         String formattedDate = df.format(c);
@@ -71,11 +73,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray results = response.getJSONArray("results");
-                            JSONObject currentMovie = results.getJSONObject(0);
-                            String title = currentMovie.getString("original_title");
-                            String message = title + context.getResources().getString(R.string.released_today);
+                            List<String> releasedMovies = new ArrayList<>();
+                            for (int i = 0; i < results.length(); i++) {
+                                JSONObject currentMovie = results.getJSONObject(i);
+                                String title = currentMovie.getString("original_title");
+                                releasedMovies.add(title);
+                            }
 
-                            showAlarmNotification(context, title, message, notifId);
+                            showReleaseNotification(context, releasedMovies, notifId);
                         } catch (JSONException e) {
                             //failed parse json
                         }
@@ -88,7 +93,50 @@ public class AlarmReceiver extends BroadcastReceiver {
                 });
     }
 
-    private void showAlarmNotification(Context context, String title, String message, int notifId) {
+    private void showReleaseNotification(Context context, List<String> movies, int notifId) {
+        String CHANNEL_ID = "Channel_1";
+        String CHANNEL_NAME = "Reminder channel";
+
+        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        for (String movie : movies) {
+            inboxStyle.addLine(movie + context.getResources().getString(R.string.released_today));
+        }
+        inboxStyle.setBigContentTitle(context.getResources().getString(R.string.new_movie_today));
+        inboxStyle.setSummaryText((movies.size() - 1) + " " + context.getResources().getString(R.string.movies));
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setStyle(inboxStyle)
+                .setSmallIcon(R.drawable.ic_movie_filter_white_24dp)
+                .setContentTitle(context.getResources().getString(R.string.new_movie_today))
+                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+                .setSound(alarmSound);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+
+            builder.setChannelId(CHANNEL_ID);
+
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
+        }
+
+        Notification notification = builder.build();
+
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(notifId, notification);
+        }
+
+    }
+
+    private void showDailyNotification(Context context, String title, String message, int notifId) {
         String CHANNEL_ID = "Channel_1";
         String CHANNEL_NAME = "Reminder channel";
 
