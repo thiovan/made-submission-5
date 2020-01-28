@@ -91,7 +91,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
                         "07:00",
                         getResources().getString(R.string.app_name) + getResources().getString(R.string.missing_you),
                         AlarmReceiver.TYPE_DAILY_REMINDER);
-                mReleaseReminder.setChecked(true);
+                mDailyReminder.setChecked(true);
             } else {
                 alarmReceiver.cancelAlarm(mContext, AlarmReceiver.TYPE_DAILY_REMINDER);
                 mDailyReminder.setChecked(false);
